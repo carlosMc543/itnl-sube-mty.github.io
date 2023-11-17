@@ -1,0 +1,40 @@
+/*Todo*/
+*{
+    box-sizing: border-box;
+}
+/*Scroll*/
+html{
+    scroll-behavior: smooth;
+}
+header{
+    background-color: rgb(240, 254, 255);
+    position: fixed;
+    width: 100%;
+    padding: 0px 15px;
+    text-decoration: none;
+}
+a{
+    text-align: left;
+}
+p{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+}
+body{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: rgb(242,230,207);
+    
+}
+
+.content {
+    padding: 20px; 
+}
+
+.page-content {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: blueviolet;
+    box-shadow: 90%;
+}
+

@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../img/ubicacion.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+
+    <title>Ubicación en Tiempo Real</title>
+
+</head>
+<body>
+
+    <h1>Transporte Público en Tiempo Real</h1>
+
+    <p>Ubicación actual: <span id="ubicacion"></span></p>
+
+
+    <script>
+
+        // Funcion para obtener la posicion del celular
+
+        function obtenerPosicion() {
+
+            if (navigator.geolocation) {
+
+                navigator.geolocation.getCurrentPosition(mostrarPosicion, mostrarErrores);
+
+            } else {
+
+                alert("El navegador no soporta la geolocalización.");
+
+            }
+
+        }
+
+
+        // Funcion para mostrar la posicion del celular
+
+        function mostrarPosicion(position) {
+    let latitud = position.coords.latitude;
+    let longitud = position.coords.longitude; // Corregir aquí
+    let posicionActual = `Latitud: ${latitud} - Longitud: ${longitud}`;
+    document.getElementById("ubicacion").innerHTML = posicionActual;
+
+    // Enviar la ubicación al servidor
+        
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "./guardar_ubicacion.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("ubicacion=" + posicionActual);
+        }
+
+
+        // Funcion para mostrar errores
+
+        function mostrarErrores(error) {
+
+            switch (error.code) {
+
+                case error.PERMISSION_DENIED:
+
+                    alert("La ubicación fue denegada.");
+
+                    break;
+
+                case error.POSITION_UNAVAILABLE:
+
+                    alert("La información de ubicación no está disponible.");
+
+                    break;
+
+                case error.TIMEOUT:
+
+                    alert("El tiempo de solicitud para la ubicación ha expirado.");
+
+                    break;
+
+                case error.UNKNOWN_ERROR:
+
+                    alert("Ha ocurrido un error desconocido.");
+
+                    break;
+
+            }
+
+        }
+
+
+        // Obtener la posicion al cargar la pagina
+
+        window.addEventListener("load", obtenerPosicion);
+
+    </script>
+
+</body>
+
+</html>
