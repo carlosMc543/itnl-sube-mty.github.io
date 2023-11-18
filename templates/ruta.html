@@ -8,38 +8,51 @@
     <link rel="stylesheet" href="../css/style1.css">
     <title>Ubicación 223</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">      
-        <style>
-            html, body {
-              height: 370px;
-              padding: 0;
-              
-              }
-            #map {
-             height: 300px;
-             width: 200px;
-             overflow:hidden;
-             margin: 20px;
-             border: thin solid #333;
-             
-            
-            }
-          </style>
-      <script>
-        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-          key: "AIzaSyAOQeivshl22o4MFZVAI40Lm1iNYxErVZw",
-          // Add other bootstrap parameters as needed, using camel case.
-          // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        html, body {
+            height: 370px;
+            padding: 0;
+        }
+        #map {
+            height: 300px;
+            width: 200px;
+            overflow:hidden;
+            margin: 20px;
+            border: thin solid #333;
+        }
+    </style>
+    <script>
+        (g => {
+            var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window;
+            b = b[c] || (b[c] = {});
+            var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => {
+                await (a = m.createElement("script"));
+                e.set("libraries", [...r] + "");
+                for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
+                e.set("callback", c + ".maps." + q);
+                a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+                d[q] = f;
+                a.onerror = () => h = n(Error(p + " could not load."));
+                a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+                m.head.append(a)
+            }));
+            d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
+        })({
+            key: "AIzaSyAOQeivshl22o4MFZVAI40Lm1iNYxErVZw",
+            // Add other bootstrap parameters as needed, using camel case.
+            // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
         });
-      </script>
-      
-    </head>
+    </script>
+
+</head>
 
 <body>
     <!--API GOOGLE MAPS-->
     <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOQeivshl22o4MFZVAI40Lm1iNYxErVZw&libraries=places"></script>-->
-   <!--JAVASCRIPT-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!--JAVASCRIPT-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <header>
     </header>
     <section class="content">
@@ -47,85 +60,98 @@
             <p>Ubicación en tiempo real </p>
         </div>
     </section>
-  
-     <div id="map" >
+
+    <div id="map">
     </div>
-    
+
     <script>
         //java script para mostrar mapa
-      // Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
-let map, infoWindow;
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
+        let map, infoWindow;
 
-function initMap() {
-  // Crear el mapa
-  map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 18,
-  });
-  infoWindow = new google.maps.InfoWindow();
+        function initMap() {
+            // Crear el mapa
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 18,
+            });
+            infoWindow = new google.maps.InfoWindow();
 
-  // Intentar obtener la ubicación del usuario
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function (position) {
-        // Obtener las coordenadas de la ubicación del usuario
-        const userLocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
+            // Intentar obtener la ubicación del usuario
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        // Obtener las coordenadas de la ubicación del usuario
+                        const userLocation = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                        };
 
-        // Centrar el mapa en la ubicación del usuario
-        map.setCenter(userLocation);
+                        // Centrar el mapa en la ubicación del usuario
+                        map.setCenter(userLocation);
 
-        // Crear un marcador en la ubicación del usuario
-        const marker = new google.maps.Marker({
-          position: userLocation,
-          map: map,
-          title: "Tu ubicación",
-        });
-        // Abrir una ventana de información para mostrar detalles adicionales si es necesario
-        //infoWindow.setContent("");
-        //infoWindow.open(map, marker);
-         // Actualizar la posicion cada 10 segundos
-      },
-      function () {
-        handleLocationError(true, infoWindow, map.getCenter());
-      }
-    );
-  } else {
-    // El navegador no soporta la geolocalización
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
-}
+                        // Crear un marcador en la ubicación del usuario
+                        const marker = new google.maps.Marker({
+                            position: userLocation,
+                            map: map,
+                            title: "Tu ubicación",
+                        });
 
-function obtenerCoordenadasTransportePublico() {
-    // Reemplaza con la URL de la segunda página
-    const apiUrl = "https://carlosmc543.github.io/itnl-sube-mty.github.io/templates/GPS_movil";
+                        // Abrir una ventana de información para mostrar detalles adicionales si es necesario
+                        //infoWindow.setContent("");
+                        //infoWindow.open(map, marker);
+                        // Actualizar la posición cada 5 segundos
+                        setInterval(updateUserLocation, 5000);
+                    },
+                    function () {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    }
+                );
+            } else {
+                // El navegador no soporta la geolocalización
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
 
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            const latitud = data.latitud;
-            const longitud = data.longitud;
+        function updateUserLocation() {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
 
-            const pos = { lat: latitud, lng: longitud };
+                    // Centrar el mapa en la ubicación del usuario
+                    map.setCenter(userLocation);
+
+                    // Actualizar la posición del marcador
+                    marker.setPosition(userLocation);
+                },
+                function (error) {
+                    console.error("Error getting user location:", error);
+                }
+            );
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
-            infoWindow.setContent("Transporte público aquí");
+            infoWindow.setContent(
+                browserHasGeolocation ?
+                "Error: La geolocalización ha fallado." :
+                "Error: Tu navegador no soporta la geolocalización."
+            );
             infoWindow.open(map);
-            map.setCenter(pos);
-        })
-        .catch(error => {
-            console.error("Error al obtener coordenadas del transporte público:", error);
-        });
-}
+        }
 
-
+        // Iniciar el mapa cuando la página se carga
+        document.addEventListener("DOMContentLoaded", initMap);
     </script>
-      <script async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOQeivshl22o4MFZVAI40Lm1iNYxErVZw&callback=initMap">
-      </script>
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOQeivshl22o4MFZVAI40Lm1iNYxErVZw&callback=initMap">
+    </script>
     <div class="container">
         <nav>
             <center>
