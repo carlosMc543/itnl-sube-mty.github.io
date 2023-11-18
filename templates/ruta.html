@@ -70,7 +70,7 @@
         // prompted by your browser. If you see the error "The Geolocation service
         // failed.", it means you probably did not give permission for the browser to
         // locate you.
-        let map, infoWindow;
+        let map, infoWindow, marker;
 
         function initMap() {
             // Crear el mapa
@@ -93,7 +93,7 @@
                         map.setCenter(userLocation);
 
                         // Crear un marcador en la ubicación del usuario
-                        const marker = new google.maps.Marker({
+                        marker = new google.maps.Marker({
                             position: userLocation,
                             map: map,
                             title: "Tu ubicación",
@@ -123,11 +123,11 @@
                         lng: position.coords.longitude,
                     };
 
-                    // Centrar el mapa en la ubicación del usuario
-                    map.setCenter(userLocation);
-
                     // Actualizar la posición del marcador
                     marker.setPosition(userLocation);
+
+                    // Centrar el mapa en la ubicación del usuario
+                    map.setCenter(userLocation);
                 },
                 function (error) {
                     console.error("Error getting user location:", error);
